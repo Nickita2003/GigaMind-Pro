@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GigaMind Pro v3.0 — ИИ-тренажёр soft skills уровня Сбера</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Навигация -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo">
+          <span class="logo-icon">🧠</span>
+          <span class="logo-text">GigaMind Pro</span>
+        </div>
+        <div class="nav-menu">
+          <button class="nav-btn active" data-page="home">Главная</button>
+          <button class="nav-btn" data-page="scenarios">Сценарии</button>
+          <button class="nav-btn" data-page="analytics">Аналитика</button>
+          <button class="nav-btn" data-page="leaderboards">Лидерборд</button>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button id="theme-toggle" class="theme-btn">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="demo-btn" class="demo-btn">
+          <i class="fas fa-video"></i>
+          <span>Демо</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Главная страница -->
+    <section id="home-page" class="page active">
+      <div class="hero">
+        <h1 class="hero-title">Развитие soft skills с ИИ уровня Сбера</h1>
+        <p class="hero-subtitle">Тренируйтесь в сложных этических, управленческих и коммуникационных дилеммах с помощью ИИ-наставника, созданного с GigaChat</p>
+        <div class="hero-buttons">
+          <button id="start-btn" class="primary-btn">
+            <i class="fas fa-play"></i>
+            <span>Начать тренировку</span>
+          </button>
+          <button id="demo-trigger-btn" class="secondary-btn">
+            <i class="fas fa-eye"></i>
+            <span>Посмотреть демо</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Персональная аналитика</h3>
+          <p>Графики и метрики вашего прогресса в развитии soft skills</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Таблицы лидеров</h3>
+          <p>Соревнуйтесь с другими участниками и получайте достижения</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Мобильная версия</h3>
+          <p>Тренируйтесь в любое время и в любом месте</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎤</div>
+          <h3>Голосовое управление</h3>
+          <p>Общайтесь с тренажёром как с живым наставником</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Страница сценариев -->
+    <section id="scenarios-page" class="page">
+      <header class="page-header">
+        <button id="back-home-btn" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>Назад</span>
+        </button>
+        <h2 class="page-title">Выберите тренировку</h2>
+        <p class="page-description">Развивайте ключевые soft skills через реальные кейсы</p>
+      </header>
+
+      <div class="scenarios-grid">
+        <div class="scenario-card" data-id="ethical-dilemma">
+          <div class="scenario-icon">⚖️</div>
+          <h3 class="scenario-title">Этическая дилемма</h3>
+          <p class="scenario-desc">Руководитель просит подписать документ, нарушающий закон. Что вы сделаете?</p>
+          <div class="scenario-stats">
+            <span class="difficulty">Сложность: ★★★★☆</span>
+            <span class="time">15 мин</span>
+          </div>
+        </div>
+
+        <div class="scenario-card" data-id="team-conflict">
+          <div class="scenario-icon">👥</div>
+          <h3 class="scenario-title">Конфликт в команде</h3>
+          <p class="scenario-desc">Два сотрудника не могут договориться. Дедлайн горит.</p>
+          <div class="scenario-stats">
+            <span class="difficulty">Сложность: ★★★☆☆</span>
+            <span class="time">10 мин</span>
+          </div>
+        </div>
+
+        <div class="scenario-card" data-id="resource-allocation">
+          <div class="scenario-icon">💸</div>
+          <h3 class="scenario-title">Распределение ресурсов</h3>
+          <p class="scenario-desc">Как распределить бюджет между отделениями Сбера справедливо?</p>
+          <div class="scenario-stats">
+            <span class="difficulty">Сложность: ★★★★★</span>
+            <span class="time">20 мин</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Страница тренировки -->
+    <section id="scenario-page" class="page">
+      <header class="page-header">
+        <button id="back-scenarios-btn" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>К выбору</span>
+        </button>
+        <h2 id="current-scenario-title" class="page-title">Этическая дилемма</h2>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="progress-text">Шаг <span id="current-step">1</span> из <span id="total-steps">5</span></span>
+        </div>
+      </header>
+
+      <div class="content">
+        <div id="step-container" class="step-container">
+          <!-- Контент будет генерироваться -->
+        </div>
+
+        <div id="voice-controls" class="voice-controls">
+          <div class="voice-header">
+            <h3><i class="fas fa-microphone"></i> Голосовое управление</h3>
+          </div>
+          <button id="voice-btn" class="voice-btn">
+            <i class="fas fa-microphone"></i>
+            <span>Нажмите и говорите</span>
+          </button>
+          <div id="voice-status" class="voice-status"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Страница аналитики -->
+    <section id="analytics-page" class="page">
+      <header class="page-header">
+        <button id="back-home-analytics" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>Назад</span>
+        </button>
+        <h2 class="page-title">Моя аналитика</h2>
+        <p class="page-description">Детальная статистика вашего прогресса</p>
+      </header>
+
+      <div class="analytics-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🧠</div>
+            <div class="stat-value" id="emotional-score">0%</div>
+            <div class="stat-label">Эмоциональный интеллект</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚖️</div>
+            <div class="stat-value" id="ethical-score">0%</div>
+            <div class="stat-label">Этические принципы</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👑</div>
+            <div class="stat-value" id="leadership-score">0%</div>
+            <div class="stat-label">Лидерские качества</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="progress-chart"></canvas>
+        </div>
+
+        <div class="actions-grid">
+          <button id="download-pdf-btn" class="action-btn primary">
+            <i class="fas fa-file-pdf"></i>
+            <span>Скачать PDF</span>
+          </button>
+          <button id="download-excel-btn" class="action-btn secondary">
+            <i class="fas fa-file-excel"></i>
+            <span>Экспорт в Excel</span>
+          </button>
+          <button id="share-btn" class="action-btn tertiary">
+            <i class="fas fa-share-alt"></i>
+            <span>Поделиться</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Страница лидербордов -->
+    <section id="leaderboards-page" class="page">
+      <header class="page-header">
+        <button id="back-home-leaderboards" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>Назад</span>
+        </button>
+        <h2 class="page-title">Таблицы лидеров</h2>
+        <p class="page-description">Рейтинги лучших участников</p>
+      </header>
+
+      <div class="leaderboards-content">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="weekly">Неделя</button>
+          <button class="tab-btn" data-tab="monthly">Месяц</button>
+        </div>
+
+        <div class="leaderboard active" id="weekly-board">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Баллы</th>
+                <th>Сценарии</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Иван Петров</td>
+                <td>98</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Мария Иванова</td>
+                <td>95</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Алексей Смирнов</td>
+                <td>92</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="leaderboard" id="monthly-board">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Баллы</th>
+                <th>Сценарии</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Екатерина Соколова</td>
+                <td>485</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Дмитрий Новиков</td>
+                <td>462</td>
+                <td>24</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Анна Козлова</td>
+                <td>451</td>
+                <td>23</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Модальное окно демо -->
+    <div id="demo-modal" class="modal">
+      <div class="modal-content">
+        <button id="close-demo-modal" class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <h3>Демонстрация GigaMind Pro</h3>
+        <p>Видео-презентация возможностей платформы</p>
+        <div class="video-placeholder">
+          <i class="fas fa-video"></i>
+          <p>Видео недоступно в демо-режиме</p>
+        </div>
+        <button id="confirm-demo" class="primary-btn">
+          Понятно
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
